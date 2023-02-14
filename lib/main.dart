@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 20, top: 5, bottom: 0, right: 5),
+              padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
               margin: EdgeInsets.all(0),
               child: Text(
                 "Nhập tên của bạn",
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               alignment: Alignment.bottomLeft,
             ),
             const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Họ và tên',
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                   ),
                 )),
             Container(
-              padding: EdgeInsets.only(left: 20, top: 5, bottom: 0, right: 5),
+              padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
               margin: EdgeInsets.all(0),
               child: Text(
                 "Nhập ngày sinh",
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
               alignment: Alignment.bottomLeft,
             ),
             const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'dd/mm/yyyy',
@@ -84,14 +84,33 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                 )),
-            // const TextField(
-
-            //   obscureText: true,
-            //   decoration: InputDecoration(
-            //     border: OutlineInputBorder(),
-            //     labelText: 'Họ và Tên',
-            //   ),
-            // )
+            Container(
+              padding: EdgeInsets.only(left: 15, top: 5, bottom: 0, right: 5),
+              margin: EdgeInsets.all(0),
+              child: Text(
+                "Họ tên và ngày tháng năm sinh sẽ cho bạn biết con đường mà bạn sẽ bước đi trong cuộc đời và những tài năng mà bạn được trao tặng.",
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Color(0xFF6A3807),
+                ),
+              ),
+              alignment: Alignment.bottomLeft,
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 40),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Tiếp tục',
+                  style: TextStyle(fontSize: 22),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Color(0xFFEA9E43),
+                    onPrimary: Color(0xFFFEFCF3),
+                    minimumSize: Size(360, 60)),
+              ),
+              alignment: Alignment.bottomCenter,
+            )
           ],
         ),
       ),
