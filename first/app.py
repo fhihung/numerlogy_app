@@ -3,7 +3,6 @@ import json
 
 #declared an empty variable for reassignment
 response = ''
-response2 = ''
 
 #creating the instance of our flask application
 app = Flask(__name__)
@@ -23,8 +22,7 @@ def nameRoute():
         response = f'Hi {name}! this is Python' #re-assigning response with the name we got from the user
         return " " #to avoid a type error 
     else:
-        return jsonify({'name' : response ,'date' : response2 
-        }) #sending data back to your frontend app
+        return jsonify({'name' : response}) #sending data back to your frontend app
 
 if __name__ == "__main__":
     app.run(debug=True)
