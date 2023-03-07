@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import './main.dart';
 import 'buttoncustom.dart';
+import './models.dart';
 
-class SecondRoute extends StatelessWidget {
+class SecondRoute extends StatefulWidget {
+  @override
+  SecondRouteState createState() => new SecondRouteState();
+}
+
+class SecondRouteState extends State<SecondRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +67,10 @@ class SecondRoute extends StatelessWidget {
                     child: ButtonCustom(
                         'Con số đường đời', '6', 'Con đường bạn sẽ trải qua',
                         () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ThirdRoute()),
+                      );
                     })),
                 Container(
                     padding:
