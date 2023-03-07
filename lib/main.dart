@@ -4,7 +4,6 @@ import './secondroute.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import './models.dart';
 
 void main() {
   runApp(MyApp());
@@ -163,15 +162,24 @@ class MyHomePageState extends State<MyHomePage> {
                 //   context,
                 //   MaterialPageRoute(builder: (context) => SecondRoute()),
                 // );
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      // Retrieve the text the that user has entered by using the
-                      // TextEditingController.
-                      content: Text(nameController.text + dateController.text),
-                    );
-                  },
+                // showDialog(
+                //   context: context,
+                //   builder: (context) {
+                //     return AlertDialog(
+                //       // Retrieve the text the that user has entered by using the
+                //       // TextEditingController.
+                //       content: Text(nameController.text + dateController.text),
+                //     );
+                //   },
+                // );
+                _savingData();
+                final url = 'http://127.0.0.1:5000/example';
+                // final url = 'http://127.0.0.1:9999/example';
+
+                final response = await http.post(
+                  Uri.parse(url),
+                  body: json.encode({'name': name}),
+                  headers: {"Content-Type": "application/json"},
                 );
               },
               child: Text(
@@ -187,30 +195,16 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           Container(
             child: ElevatedButton(
-              child: Text('p'),
+              child: Text('send'),
               onPressed: () async {
-                //final url = 'http://127.0.0.1:9999/example';
-                final url = 'http://127.0.0.1:5000/name';
+                final url = 'http://127.0.0.1:5000/example';
+                // final url = 'http://127.0.0.1:9999/example';
 
-                final response = await http.post(
-                  Uri.parse(url),
-                  body: json.encode({'name': name}),
-                  headers: {"Content-Type": "application/json"},
-                );
-              },
-            ),
-          ),
-          Container(
-            child: ElevatedButton(
-              child: Text('get'),
-              onPressed: () async {
-                //final url = 'http://127.0.0.1:9999/example';
-                final url = 'http://127.0.0.1:5000/name';
                 final response = await http.get(Uri.parse(url));
                 final decoded =
-                    json.encode(response.body) as Map<String, dynamic>;
+                    json.decode(response.body) as Map<String, dynamic>;
                 setState(() {
-                  final_response = decoded['name'];
+                  final_response = decoded['tinh_cach'];
                 });
               },
             ),
@@ -221,7 +215,7 @@ class MyHomePageState extends State<MyHomePage> {
               final_response,
               style: TextStyle(
                   fontSize: 24,
-                  backgroundColor: Color.fromARGB(255, 232, 225, 225)),
+                  backgroundColor: Color.fromARGB(255, 255, 255, 255)),
             ),
           )
         ],
