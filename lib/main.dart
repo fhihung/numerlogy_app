@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+String final_response = "";
 void main() {
   runApp(MyApp());
 }
@@ -35,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   String name = "";
   String date = "";
-  String final_response = "";
+
   final _formkey = GlobalKey<FormState>();
   Future<void> _savingData() async {
     final validation = _formkey.currentState!.validate();
@@ -157,30 +158,29 @@ class MyHomePageState extends State<MyHomePage> {
           Container(
             padding: EdgeInsets.only(top: 40),
             child: ElevatedButton(
-              onPressed: () async {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => SecondRoute()),
-                // );
-                // showDialog(
-                //   context: context,
-                //   builder: (context) {
-                //     return AlertDialog(
-                //       // Retrieve the text the that user has entered by using the
-                //       // TextEditingController.
-                //       content: Text(nameController.text + dateController.text),
-                //     );
-                //   },
-                // );
-                _savingData();
-                final url = 'http://127.0.0.1:5000/example';
-                // final url = 'http://127.0.0.1:9999/example';
-
-                final response = await http.post(
-                  Uri.parse(url),
-                  body: json.encode({'name': name}),
-                  headers: {"Content-Type": "application/json"},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()),
                 );
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(nameController.text + dateController.text),
+                    );
+                  },
+                );
+                // _savingData();
+                // final url = 'http://127.0.0.1:5000/example';
+                // // final url = 'http://127.0.0.1:9999/example';
+                // final response = await http.post(
+                //   Uri.parse(url),
+                //   body: json.encode({'name': name}),
+                //   headers: {"Content-Type": "application/json"},
+                // );
               },
               child: Text(
                 'Tiếp tục',
@@ -195,7 +195,22 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           Container(
             child: ElevatedButton(
-              child: Text('send'),
+              child: Text('post'),
+              onPressed: () async {
+                _savingData();
+                final url = 'http://127.0.0.1:5000/example';
+                // final url = 'http://127.0.0.1:9999/example';
+                final response = await http.post(
+                  Uri.parse(url),
+                  body: json.encode({'name': name}),
+                  headers: {"Content-Type": "application/json"},
+                );
+              },
+            ),
+          ),
+          Container(
+            child: ElevatedButton(
+              child: Text('get'),
               onPressed: () async {
                 final url = 'http://127.0.0.1:5000/example';
                 // final url = 'http://127.0.0.1:9999/example';

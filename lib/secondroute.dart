@@ -85,7 +85,7 @@ class SecondRouteState extends State<SecondRoute> {
                 Container(
                   padding:
                       EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                  child: ButtonCustom("Con số tính cách", '7',
+                  child: ButtonCustom("Con số tính cách", final_response,
                       'Cách bạn thể hiện bên ngoài', () {}),
                 ),
                 Container(
