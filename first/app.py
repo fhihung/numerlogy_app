@@ -9,7 +9,7 @@ response2 = ''
 app = Flask(__name__)
 
 #route to entertain our post and get request from flutter app
-@app.route('/name', methods = ['GET','POST'])
+@app.route('/models', methods = ['GET','POST'])
 def nameRoute():
 
     #fetching the global response variable to manipulate inside the function

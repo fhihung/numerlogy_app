@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:numerology_app/thirdroute.dart';
 import './secondroute.dart';
+import './postrequest.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
 String final_response = "";
+
+String a = "1234";
 void main() {
   runApp(MyApp());
 }
-
-// final name = TextEditingController();
-// final date = TextEditingController();
 
 class MyApp extends StatelessWidget {
   @override
@@ -34,8 +34,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+  Future<Info>? _futureInfo;
   String name = "";
-  String date = "";
+  String day = "";
+  String month = "";
+  String year = "";
 
   final _formkey = GlobalKey<FormState>();
   Future<void> _savingData() async {
@@ -75,29 +78,25 @@ class MyHomePageState extends State<MyHomePage> {
             alignment: Alignment.bottomLeft,
           ),
           Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-              child: Form(
-                key: _formkey,
-                child: TextFormField(
-                  onSaved: (value) {
-                    name = value as String;
-                  },
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: 'Họ và tên',
-                    hintStyle: TextStyle(color: Color(0xFFC7B49C)),
-                    // errorText: 'Error Text',
-                    border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 2, color: Color(0xFF6A3807)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 2, color: Color(0xFF6A3807)),
-                    ),
-                  ),
+            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+            child: TextField(
+              onChanged: (value) {
+                name = value as String;
+              },
+              controller: nameController,
+              decoration: InputDecoration(
+                hintText: 'Họ và tên',
+                hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                // errorText: 'Error Text',
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Color(0xFF6A3807)),
                 ),
-              )),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Color(0xFF6A3807)),
+                ),
+              ),
+            ),
+          ),
           Container(
             padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
             margin: EdgeInsets.all(0),
@@ -137,6 +136,9 @@ class MyHomePageState extends State<MyHomePage> {
                     String formattedDate =
                         DateFormat('dd/MM/yyyy').format(pickedDate);
                     print(formattedDate);
+                    String day = pickedDate.day as String;
+                    String month = pickedDate.month as String;
+                    String year = pickedDate.year as String;
                     setState(() {
                       dateController.text = formattedDate;
                     });
@@ -197,14 +199,7 @@ class MyHomePageState extends State<MyHomePage> {
             child: ElevatedButton(
               child: Text('post'),
               onPressed: () async {
-                _savingData();
-                final url = 'http://127.0.0.1:5000/example';
-                // final url = 'http://127.0.0.1:9999/example';
-                final response = await http.post(
-                  Uri.parse(url),
-                  body: json.encode({'name': name}),
-                  headers: {"Content-Type": "application/json"},
-                );
+                _futureInfo = createInfo(name, day, month, year);
               },
             ),
           ),
@@ -212,14 +207,14 @@ class MyHomePageState extends State<MyHomePage> {
             child: ElevatedButton(
               child: Text('get'),
               onPressed: () async {
-                final url = 'http://127.0.0.1:5000/example';
+                final url = 'http://127.0.0.1:5000/name';
                 // final url = 'http://127.0.0.1:9999/example';
 
                 final response = await http.get(Uri.parse(url));
                 final decoded =
                     json.decode(response.body) as Map<String, dynamic>;
                 setState(() {
-                  final_response = decoded['tinh_cach'];
+                  final_response = decoded['name'];
                 });
               },
             ),
