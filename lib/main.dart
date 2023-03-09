@@ -39,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   String name = "";
   String date = "";
-  String final_response = "";
+
   final _formkey = GlobalKey<FormState>();
   Future<void> _savingData() async {
     final validation = _formkey.currentState!.validate();
@@ -135,18 +135,13 @@ class MyHomePageState extends State<MyHomePage> {
                       initialDate: DateTime.now(),
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2200));
-                  // if (pickedDate != null) {
-                  //   day = pickedDate.day as String;
-                  //   month = pickedDate.month as String;
-                  //   year = pickedDate.year as String;
-                  // }
                   if (pickedDate != null) {
-                    String dateFormatted =
+                    print(pickedDate);
+                    String formattedDate =
                         DateFormat('dd/MM/yyyy').format(pickedDate);
-                    print(dateFormatted);
-                    dateOfBirth = dateFormatted;
+                    print(formattedDate);
                     setState(() {
-                      dateController.text = dateFormatted;
+                      dateController.text = formattedDate;
                     });
                   }
                 },
@@ -155,7 +150,7 @@ class MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.only(left: 15, top: 5, bottom: 0, right: 5),
             margin: EdgeInsets.all(0),
             child: Text(
-              "Họ tên và ngày tháng năm sinh sẽ  cho bạn biết con đường mà bạn sẽ bước đi trong cuộc đời và những tài năng mà bạn được trao tặng.",
+              "Họ tên và ngày tháng năm sinh sẽ cho bạn biết con đường mà bạn sẽ bước đi trong cuộc đời và những tài năng mà bạn được trao tặng.",
               style: TextStyle(
                 fontSize: 13,
                 color: Color(0xFF6A3807),
@@ -203,9 +198,24 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           Container(
             child: ElevatedButton(
-              child: Text('send'),
+              child: Text('post'),
               onPressed: () async {
-                final url = 'http://127.0.0.1:5000/home';
+                _savingData();
+                final url = 'http://127.0.0.1:5000/example';
+                // final url = 'http://127.0.0.1:9999/example';
+                final response = await http.post(
+                  Uri.parse(url),
+                  body: json.encode({'name': name}),
+                  headers: {"Content-Type": "application/json"},
+                );
+              },
+            ),
+          ),
+          Container(
+            child: ElevatedButton(
+              child: Text('get'),
+              onPressed: () async {
+                final url = 'http://127.0.0.1:5000/example';
                 // final url = 'http://127.0.0.1:9999/example';
 
                 final response = await http.get(Uri.parse(url));
