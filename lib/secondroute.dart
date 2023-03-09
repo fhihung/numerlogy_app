@@ -75,17 +75,17 @@ class SecondRouteState extends State<SecondRoute> {
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số định mệnh', '7',
+                    child: ButtonCustom('Con số vận mệnh', van_menh,
                         'Mục tiêu cuộc đời bạn', () {})),
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số tâm hồn', '9',
+                    child: ButtonCustom('Con số linh hồn', linh_hon,
                         'Mong muốn bên trong bạn', () {})),
                 Container(
                   padding:
                       EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                  child: ButtonCustom("Con số tính cách", '7',
+                  child: ButtonCustom("Con số tính cách", tinh_cach,
                       'Cách bạn thể hiện bên ngoài', () {}),
                 ),
                 Container(

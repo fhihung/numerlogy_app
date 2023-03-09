@@ -5,6 +5,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+String van_menh = "";
+String linh_hon = "";
+String tinh_cach = "";
+String ngay_sinh = "";
 void main() {
   runApp(MyApp());
 }
@@ -35,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   String name = "";
   String date = "";
-  String final_response = "";
+
   final _formkey = GlobalKey<FormState>();
   Future<void> _savingData() async {
     final validation = _formkey.currentState!.validate();
@@ -157,30 +161,29 @@ class MyHomePageState extends State<MyHomePage> {
           Container(
             padding: EdgeInsets.only(top: 40),
             child: ElevatedButton(
-              onPressed: () async {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => SecondRoute()),
-                // );
-                // showDialog(
-                //   context: context,
-                //   builder: (context) {
-                //     return AlertDialog(
-                //       // Retrieve the text the that user has entered by using the
-                //       // TextEditingController.
-                //       content: Text(nameController.text + dateController.text),
-                //     );
-                //   },
-                // );
-                _savingData();
-                final url = 'http://127.0.0.1:5000/example';
-                // final url = 'http://127.0.0.1:9999/example';
-
-                final response = await http.post(
-                  Uri.parse(url),
-                  body: json.encode({'name': name}),
-                  headers: {"Content-Type": "application/json"},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()),
                 );
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(nameController.text + dateController.text),
+                    );
+                  },
+                );
+                // _savingData();
+                // final url = 'http://127.0.0.1:5000/example';
+                // // final url = 'http://127.0.0.1:9999/example';
+                // final response = await http.post(
+                //   Uri.parse(url),
+                //   body: json.encode({'name': name}),
+                //   headers: {"Content-Type": "application/json"},
+                // );
               },
               child: Text(
                 'Tiếp tục',
@@ -195,7 +198,22 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           Container(
             child: ElevatedButton(
-              child: Text('send'),
+              child: Text('post'),
+              onPressed: () async {
+                _savingData();
+                final url = 'http://127.0.0.1:5000/example';
+                // final url = 'http://127.0.0.1:9999/example';
+                final response = await http.post(
+                  Uri.parse(url),
+                  body: json.encode({'name': name}),
+                  headers: {"Content-Type": "application/json"},
+                );
+              },
+            ),
+          ),
+          Container(
+            child: ElevatedButton(
+              child: Text('get'),
               onPressed: () async {
                 final url = 'http://127.0.0.1:5000/example';
                 // final url = 'http://127.0.0.1:9999/example';
@@ -204,7 +222,9 @@ class MyHomePageState extends State<MyHomePage> {
                 final decoded =
                     json.decode(response.body) as Map<String, dynamic>;
                 setState(() {
-                  final_response = decoded['tinh_cach'];
+                  van_menh = decoded['van_menh'];
+                  linh_hon = decoded['linh_hon'];
+                  tinh_cach = decoded['tinh_cach'];
                 });
               },
             ),
@@ -212,7 +232,16 @@ class MyHomePageState extends State<MyHomePage> {
           Container(
             alignment: Alignment.center,
             child: Text(
-              final_response,
+              van_menh,
+              style: TextStyle(
+                  fontSize: 24,
+                  backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              linh_hon,
               style: TextStyle(
                   fontSize: 24,
                   backgroundColor: Color.fromARGB(255, 255, 255, 255)),
