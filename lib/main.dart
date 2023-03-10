@@ -9,6 +9,8 @@ String van_menh = "";
 String linh_hon = "";
 String tinh_cach = "";
 String ngay_sinh = "";
+String name = "";
+
 void main() {
   runApp(MyApp());
 }
@@ -37,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  String name = "";
   String date = "";
 
   final _formkey = GlobalKey<FormState>();
@@ -172,7 +173,7 @@ class MyHomePageState extends State<MyHomePage> {
                     return AlertDialog(
                       // Retrieve the text the that user has entered by using the
                       // TextEditingController.
-                      content: Text(nameController.text + dateController.text),
+                      content: Text('Done'),
                     );
                   },
                 );
@@ -201,7 +202,8 @@ class MyHomePageState extends State<MyHomePage> {
               child: Text('post'),
               onPressed: () async {
                 _savingData();
-                final url = 'http://127.0.0.1:5000/example';
+                final url =
+                    'https://ca2c-2402-800-61cd-7e88-d8fe-b0b0-31ac-84e3.ap.ngrok.io/example';
                 // final url = 'http://127.0.0.1:9999/example';
                 final response = await http.post(
                   Uri.parse(url),
@@ -215,7 +217,8 @@ class MyHomePageState extends State<MyHomePage> {
             child: ElevatedButton(
               child: Text('get'),
               onPressed: () async {
-                final url = 'http://127.0.0.1:5000/example';
+                final url =
+                    'https://ca2c-2402-800-61cd-7e88-d8fe-b0b0-31ac-84e3.ap.ngrok.io/example';
                 // final url = 'http://127.0.0.1:9999/example';
 
                 final response = await http.get(Uri.parse(url));

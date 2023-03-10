@@ -33,7 +33,7 @@ class SecondRouteState extends State<SecondRoute> {
           children: [
             Container(
               child: Text(
-                'Nguyen Phi Hung',
+                name,
                 style: TextStyle(fontFamily: 'Inter', fontSize: 20),
               ),
             ),
@@ -64,9 +64,8 @@ class SecondRouteState extends State<SecondRoute> {
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom(
-                        'Con số đường đời', '6', 'Con đường bạn sẽ trải qua',
-                        () {
+                    child: ButtonCustom('Con số đường đời', 'Updating',
+                        'Con đường bạn sẽ trải qua', () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ThirdRoute()),
@@ -91,7 +90,7 @@ class SecondRouteState extends State<SecondRoute> {
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số ngày sinh', '19',
+                    child: ButtonCustom('Con số ngày sinh', 'Updating',
                         'Năng khiếu tự nhiên', () {})),
               ],
             ),
@@ -156,6 +155,12 @@ class SecondRouteState extends State<SecondRoute> {
             ),
             ListTile(
               title: const Text('Năng lượng gia tăng'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Con số tương hợp'),
               onTap: () {
                 Navigator.pop(context);
               },
