@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:numerology_app/thirdroute.dart';
-import './secondroute.dart';
+import '../secondroute.dart';
 // import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import './models.dart';
+import 'duongdoiscreen.dart';
 import 'package:pull_down_button/pull_down_button.dart';
+import 'package:numerology_app/main.dart';
 
-class ThirdRoute extends StatelessWidget {
+class DetailNumber extends StatelessWidget {
+  final String titleText;
+  final String detailText;
+
+  DetailNumber(this.titleText, this.detailText);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +22,7 @@ class ThirdRoute extends StatelessWidget {
           backgroundColor: Color(0xFFFEFCF3),
           centerTitle: true,
           title: Text(
-            'Con số đường đời',
+            titleText,
             style: TextStyle(
                 fontFamily: 'Inter', fontSize: 26, color: Color(0xFF6A3807)),
           ),
@@ -26,7 +32,7 @@ class ThirdRoute extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Text(
-                '6',
+                detailText,
                 style: TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 60,

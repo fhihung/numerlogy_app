@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './main.dart';
 import 'buttoncustom.dart';
-import './models.dart';
+import './numberscreen/duongdoiscreen.dart';
 
 class SecondRoute extends StatefulWidget {
   @override
@@ -66,32 +66,40 @@ class SecondRouteState extends State<SecondRoute> {
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
                     child: ButtonCustom('Con số đường đời', 'Updating',
                         'Con đường bạn sẽ trải qua', () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ThirdRoute()),
-                      );
+                      Navigator.of(context).popAndPushNamed("/duongdoi");
                     })),
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số vận mệnh', van_menh,
-                        'Mục tiêu cuộc đời bạn', () {})),
+                    child: ButtonCustom(
+                        'Con số vận mệnh', van_menh, 'Mục tiêu cuộc đời bạn',
+                        () {
+                      Navigator.of(context).popAndPushNamed("/vanmenh");
+                    })),
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số linh hồn', linh_hon,
-                        'Mong muốn bên trong bạn', () {})),
+                    child: ButtonCustom(
+                        'Con số linh hồn', linh_hon, 'Mong muốn bên trong bạn',
+                        () {
+                      Navigator.of(context).popAndPushNamed("/linhhon");
+                    })),
                 Container(
                   padding:
                       EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
                   child: ButtonCustom("Con số tính cách", tinh_cach,
-                      'Cách bạn thể hiện bên ngoài', () {}),
+                      'Cách bạn thể hiện bên ngoài', () {
+                    Navigator.of(context).popAndPushNamed("/tinhcach");
+                  }),
                 ),
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số ngày sinh', 'Updating',
-                        'Năng khiếu tự nhiên', () {})),
+                    child: ButtonCustom(
+                        'Con số ngày sinh', 'Updating', 'Năng khiếu tự nhiên',
+                        () {
+                      Navigator.of(context).popAndPushNamed("/ngaysinh");
+                    })),
               ],
             ),
           ],
@@ -169,6 +177,12 @@ class SecondRouteState extends State<SecondRoute> {
               title: const Text('Con số tương hợp'),
               onTap: () {
                 Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Thoát'),
+              onTap: () {
+                Navigator.of(context).popAndPushNamed("/");
               },
             ),
           ],
