@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:numerology_app/thirdroute.dart';
+import 'numberscreen/duongdoiscreen.dart';
 import './secondroute.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+String duong_doi = "";
 String van_menh = "";
 String linh_hon = "";
 String tinh_cach = "";
 String ngay_sinh = "";
 String name = "";
+String date_post = "";
 
 void main() {
   runApp(MyApp());
@@ -24,7 +26,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       title: 'Flutter App',
-      home: MyHomePage(title: 'Numerology'),
+      // home: MyHomePage(title: 'Numerology'),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => MyHomePage(
+              title: "Numerology",
+            ),
+        "/second": (context) => SecondRoute(),
+        "/duongdoi": (context) => DuongDoiRoute(),
+        "/vanmenh": (context) => VanMenhRoute(),
+        "/linhhon": (context) => LinhHonRoute(),
+        "/tinhcach": (context) => TinhCachRoute(),
+        "/ngaysinh": (context) => NgaySinhRoute(),
+      },
     );
   }
 }
@@ -141,6 +155,7 @@ class MyHomePageState extends State<MyHomePage> {
                     String formattedDate =
                         DateFormat('dd/MM/yyyy').format(pickedDate);
                     print(formattedDate);
+                    String date_post = formattedDate;
                     setState(() {
                       dateController.text = formattedDate;
                     });
@@ -163,10 +178,11 @@ class MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.only(top: 40),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SecondRoute()),
-                );
+                Navigator.of(context).popAndPushNamed("/second");
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => SecondRoute()),
+                // );
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -202,12 +218,11 @@ class MyHomePageState extends State<MyHomePage> {
               child: Text('post'),
               onPressed: () async {
                 _savingData();
-                final url =
-                    'https://ca2c-2402-800-61cd-7e88-d8fe-b0b0-31ac-84e3.ap.ngrok.io/example';
-                // final url = 'http://127.0.0.1:9999/example';
+                final url = 'https://5b77-118-70-209-177.ap.ngrok.io/example';
+                // final url = 'http://127.0.0.1:5000/example';
                 final response = await http.post(
                   Uri.parse(url),
-                  body: json.encode({'name': name}),
+                  body: json.encode({'name': name, 'date': date_post}),
                   headers: {"Content-Type": "application/json"},
                 );
               },
@@ -217,9 +232,8 @@ class MyHomePageState extends State<MyHomePage> {
             child: ElevatedButton(
               child: Text('get'),
               onPressed: () async {
-                final url =
-                    'https://ca2c-2402-800-61cd-7e88-d8fe-b0b0-31ac-84e3.ap.ngrok.io/example';
-                // final url = 'http://127.0.0.1:9999/example';
+                final url = 'https://5b77-118-70-209-177.ap.ngrok.io/example';
+                // final url = 'http://127.0.0.1:5000/example';
 
                 final response = await http.get(Uri.parse(url));
                 final decoded =
