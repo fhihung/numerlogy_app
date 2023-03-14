@@ -39,16 +39,20 @@ class SecondRouteState extends State<SecondRoute> {
             ),
             Container(
               child: Text(
-                '19/09/2003',
+                day + '/' + month + '/' + year,
                 style: TextStyle(fontSize: 18),
               ),
             ),
             Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                   child: SizedBox(
                     child: TextButton(
-                        onPressed: null, child: Text('Các số chính')),
+                      child: Text('Các số chính'),
+                      onPressed: () {
+                        Navigator.of(context).popAndPushNamed("/second");
+                      },
+                    ),
                   ),
                 ),
                 Expanded(
@@ -64,7 +68,7 @@ class SecondRouteState extends State<SecondRoute> {
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số đường đời', 'Updating',
+                    child: ButtonCustom('Con số đường đời', duong_doi,
                         'Con đường bạn sẽ trải qua', () {
                       Navigator.of(context).popAndPushNamed("/duongdoi");
                     })),
@@ -96,7 +100,7 @@ class SecondRouteState extends State<SecondRoute> {
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
                     child: ButtonCustom(
-                        'Con số ngày sinh', 'Updating', 'Năng khiếu tự nhiên',
+                        'Con số ngày sinh', ngay_sinh, 'Năng khiếu tự nhiên',
                         () {
                       Navigator.of(context).popAndPushNamed("/ngaysinh");
                     })),
@@ -124,7 +128,7 @@ class SecondRouteState extends State<SecondRoute> {
                     children: [
                       Container(
                         child: Text(
-                          'Nguyen Phi Hung',
+                          name,
                           style: TextStyle(
                               color: Color(0xFF6A3807),
                               fontFamily: 'Inter',
@@ -132,7 +136,7 @@ class SecondRouteState extends State<SecondRoute> {
                         ),
                       ),
                       Container(
-                        child: Text('19/09/2003'),
+                        child: Text(day + '/' + month + '/' + year),
                       )
                     ],
                   )),
@@ -146,7 +150,7 @@ class SecondRouteState extends State<SecondRoute> {
             ListTile(
               title: const Text('Con số chủ đạo'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.of(context).popAndPushNamed("/second");
               },
             ),
             ListTile(
