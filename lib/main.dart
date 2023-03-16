@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'numberscreen/duongdoiscreen.dart';
+import 'numbers/eachnumber.dart';
 import './secondroute.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -11,10 +11,16 @@ String van_menh = "";
 String linh_hon = "";
 String tinh_cach = "";
 String ngay_sinh = "";
+String ngay_ca_nhan = "";
+String thang_ca_nhan = "";
+String nam_ca_nhan = "";
 String name = "";
 String day = "";
 String month = "";
 String year = "";
+String current_day = "3";
+String current_month = "5";
+String current_year = "2023";
 
 void main() {
   runApp(MyApp());
@@ -72,6 +78,9 @@ class MyHomePageState extends State<MyHomePage> {
   final dayController = TextEditingController();
   final monthController = TextEditingController();
   final yearController = TextEditingController();
+  // String current_day = DateTime.now().day as String;
+  // String current_month = DateTime.now().month as String;
+  // String current_year = DateTime.now().year as String;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,6 +150,7 @@ class MyHomePageState extends State<MyHomePage> {
                   Container(
                     width: 100,
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       controller: dayController,
                       decoration: InputDecoration(
@@ -180,6 +190,7 @@ class MyHomePageState extends State<MyHomePage> {
                   Container(
                     width: 100,
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       controller: monthController,
                       decoration: InputDecoration(
@@ -202,6 +213,7 @@ class MyHomePageState extends State<MyHomePage> {
                   Container(
                     width: 100,
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       controller: yearController,
                       decoration: InputDecoration(
@@ -249,25 +261,67 @@ class MyHomePageState extends State<MyHomePage> {
                 //   },
                 // );
 
-                _savingData();
+                // _savingData();
 
-                // final url = 'https://5b77-118-70-209-177.ap.ngrok.io/example';
-                final url = 'http://127.0.0.1:5000/example';
-                final response = await http.post(
+                // final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                // // final url = 'http://127.0.0.1:5000/example';
+                // final response = await http.post(
+                //   Uri.parse(url),
+                //   body: json.encode({
+                //     'name': name,
+                //     'day': day,
+                //     'month': month,
+                //     'year': year,
+                //     // 'current_day': current_day,
+                //     // 'current_month': current_month,
+                //     // 'current_year': current_year
+                //   }),
+                //   headers: {"Content-Type": "application/json"},
+                // );
+                // final response1 = await http.get(Uri.parse(url));
+                // final decoded =
+                //     json.decode(response1.body) as Map<String, dynamic>;
+                // setState(() {
+                //   duong_doi = decoded['duong_doi'];
+                //   van_menh = decoded['van_menh'];
+                //   linh_hon = decoded['linh_hon'];
+                //   tinh_cach = decoded['tinh_cach'];
+                //   ngay_sinh = decoded['ngay_sinh'];
+                //   // ngay_ca_nhan = decoded['ngay_ca_nhan'];
+                //   // thang_ca_nhan = decoded['thang_ca_nhan'];
+                //   // nam_ca_nhan = decoded['nam_ca_nhan'];
+                // });
+                _savingData();
+                final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                // final url = 'http://127.0.0.1:5000/example';
+                dynamic response = await http.post(
                   Uri.parse(url),
-                  body: json.encode(
-                      {'name': name, 'day': day, 'month': month, 'year': year}),
                   headers: {"Content-Type": "application/json"},
+                  body: json.encode({
+                    'name': name,
+                    'day': day,
+                    'month': month,
+                    'year': year,
+                    'current_day': current_day,
+                    'current_month': current_month,
+                    'current_year': current_year
+                  }),
                 );
-                final response1 = await http.get(Uri.parse(url));
+                //  final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                // final url = 'http://127.0.0.1:5000/example';
+
+                response = await http.get(Uri.parse(url));
                 final decoded =
-                    json.decode(response1.body) as Map<String, dynamic>;
+                    json.decode(response.body) as Map<String, dynamic>;
                 setState(() {
-                  duong_doi = decoded['duong_doi'];
                   van_menh = decoded['van_menh'];
                   linh_hon = decoded['linh_hon'];
                   tinh_cach = decoded['tinh_cach'];
+                  duong_doi = decoded['duong_doi'];
                   ngay_sinh = decoded['ngay_sinh'];
+                  ngay_ca_nhan = decoded['ngay_ca_nhan'];
+                  thang_ca_nhan = decoded['thang_ca_nhan'];
+                  nam_ca_nhan = decoded['nam_ca_nhan'];
                 });
               },
               child: Text(
@@ -281,42 +335,52 @@ class MyHomePageState extends State<MyHomePage> {
             ),
             alignment: Alignment.bottomCenter,
           ),
-          // Container(
-          //   child: ElevatedButton(
-          //     child: Text('post'),
-          //     onPressed: () async {
-          //       // _savingData();
-          //       // // final url = 'https://5b77-118-70-209-177.ap.ngrok.io/example';
-          //       // final url = 'http://127.0.0.1:5000/example';
-          //       // final response = await http.post(
-          //       //   Uri.parse(url),
-          //       //   body: json.encode(
-          //       //       {'name': name, 'day': day, 'month': month, 'year': year}),
-          //       //   headers: {"Content-Type": "application/json"},
-          //       // );
-          //     },
-          //   ),
-          // ),
-          // Container(
-          //   child: ElevatedButton(
-          //     child: Text('get'),
-          //     onPressed: () async {
-          //       // // final url = 'https://5b77-118-70-209-177.ap.ngrok.io/example';
-          //       // final url = 'http://127.0.0.1:5000/example';
+          Container(
+            child: ElevatedButton(
+              child: Text('post'),
+              onPressed: () async {
+                _savingData();
+                final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                // final url = 'http://127.0.0.1:5000/example';
+                final response = await http.post(
+                  Uri.parse(url),
+                  headers: {"Content-Type": "application/json"},
+                  body: json.encode({
+                    'name': name,
+                    'day': day,
+                    'month': month,
+                    'year': year,
+                    'current_day': current_day,
+                    'current_month': current_month,
+                    'current_year': current_year
+                  }),
+                );
+              },
+            ),
+          ),
+          Container(
+            child: ElevatedButton(
+              child: Text('get'),
+              onPressed: () async {
+                final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                // final url = 'http://127.0.0.1:5000/example';
 
-          //       // final response = await http.get(Uri.parse(url));
-          //       // final decoded =
-          //       //     json.decode(response.body) as Map<String, dynamic>;
-          //       // setState(() {
-          //       //   van_menh = decoded['van_menh'];
-          //       //   linh_hon = decoded['linh_hon'];
-          //       //   tinh_cach = decoded['tinh_cach'];
-          //       //   duong_doi = decoded['duong_doi'];
-          //       //   ngay_sinh = decoded['ngay_sinh'];
-          //       // });
-          //     },
-          //   ),
-          // ),
+                final response = await http.get(Uri.parse(url));
+                final decoded =
+                    json.decode(response.body) as Map<String, dynamic>;
+                setState(() {
+                  van_menh = decoded['van_menh'];
+                  linh_hon = decoded['linh_hon'];
+                  tinh_cach = decoded['tinh_cach'];
+                  duong_doi = decoded['duong_doi'];
+                  ngay_sinh = decoded['ngay_sinh'];
+                  ngay_ca_nhan = decoded['ngay_ca_nhan'];
+                  thang_ca_nhan = decoded['thang_ca_nhan'];
+                  nam_ca_nhan = decoded['nam_ca_nhan'];
+                });
+              },
+            ),
+          ),
           // Container(
           //   alignment: Alignment.center,
           //   child: Text(
@@ -326,15 +390,15 @@ class MyHomePageState extends State<MyHomePage> {
           //         backgroundColor: Color.fromARGB(255, 255, 255, 255)),
           //   ),
           // ),
-          // Container(
-          //   alignment: Alignment.center,
-          //   child: Text(
-          //     linh_hon,
-          //     style: TextStyle(
-          //         fontSize: 24,
-          //         backgroundColor: Color.fromARGB(255, 255, 255, 255)),
-          //   ),
-          // )
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              linh_hon,
+              style: TextStyle(
+                  fontSize: 24,
+                  backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+            ),
+          )
         ],
       ),
     );

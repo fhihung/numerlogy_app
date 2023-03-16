@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './main.dart';
-import 'buttoncustom.dart';
+import 'widgets/buttoncustom.dart';
 
 class ThirdRoute extends StatelessWidget {
   @override
