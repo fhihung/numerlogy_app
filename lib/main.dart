@@ -240,6 +240,24 @@ class MyHomePageState extends State<MyHomePage> {
                         ),
                         onChanged: (value) async {
                           year = yearController.text as String;
+                          _savingData();
+                          final url =
+                              'https://6e20-118-70-209-177.ap.ngrok.io/example';
+                          // final url = 'http://127.0.0.1:5000/example';
+                          final response = await http.post(
+                            Uri.parse(url),
+                            headers: {"Content-Type": "application/json"},
+                            body: json.encode({
+                              'name': name,
+                              'day': day,
+                              'month': month,
+                              'year': year,
+                              'current_day': current_day,
+                              'current_month': current_month,
+                              'current_year': current_year
+                            }),
+                          );
+                          ;
                         }),
                   ),
                 ],
@@ -273,29 +291,7 @@ class MyHomePageState extends State<MyHomePage> {
             ),
             alignment: Alignment.bottomCenter,
           ),
-          Container(
-            child: ElevatedButton(
-              child: Text('post'),
-              onPressed: () async {
-                _savingData();
-                final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
-                // final url = 'http://127.0.0.1:5000/example';
-                final response = await http.post(
-                  Uri.parse(url),
-                  headers: {"Content-Type": "application/json"},
-                  body: json.encode({
-                    'name': name,
-                    'day': day,
-                    'month': month,
-                    'year': year,
-                    'current_day': current_day,
-                    'current_month': current_month,
-                    'current_year': current_year
-                  }),
-                );
-              },
-            ),
-          ),
+
           Container(
             child: ElevatedButton(
               child: Text('get'),
