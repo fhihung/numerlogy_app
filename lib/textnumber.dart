@@ -10,6 +10,9 @@ String van_menh_text = "";
 String linh_hon_text = "";
 String tinh_cach_text = "";
 String ngay_sinh_text = "";
+String ngay_ca_nhan_text = "";
+String thang_ca_nhan_text = "";
+String nam_ca_nhan_text = "";
 
 class DDNumber extends StatelessWidget {
   @override
@@ -204,8 +207,6 @@ class NSNumber extends StatelessWidget {
       ngay_sinh_text = ngay_sinh_11;
     } else if (ngay_sinh == '22') {
       ngay_sinh_text = ngay_sinh_22;
-    } else if (ngay_sinh == '33') {
-      ngay_sinh_text = ngay_sinh_33;
     }
     return Container(
         padding: EdgeInsets.all(20),
@@ -214,6 +215,118 @@ class NSNumber extends StatelessWidget {
           children: [
             Text(
               ngay_sinh_text,
+              style: TextStyle(),
+            ),
+          ],
+        )));
+  }
+}
+
+class NCNNumber extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    if (ngay_ca_nhan == '1') {
+      ngay_ca_nhan_text = ngay_ca_nhan_1;
+    } else if (ngay_ca_nhan == '2') {
+      ngay_ca_nhan_text = ngay_ca_nhan_2;
+    } else if (ngay_ca_nhan == '3') {
+      ngay_ca_nhan_text = ngay_ca_nhan_3;
+    } else if (ngay_ca_nhan == '4') {
+      ngay_ca_nhan_text = ngay_ca_nhan_4;
+    } else if (ngay_ca_nhan == '5') {
+      ngay_ca_nhan_text = ngay_ca_nhan_5;
+    } else if (ngay_ca_nhan == '6') {
+      ngay_ca_nhan_text = ngay_ca_nhan_6;
+    } else if (ngay_ca_nhan == '7') {
+      ngay_ca_nhan_text = ngay_ca_nhan_7;
+    } else if (ngay_ca_nhan == '8') {
+      ngay_ca_nhan_text = ngay_ca_nhan_8;
+    } else if (ngay_ca_nhan == '9') {
+      ngay_ca_nhan_text = ngay_ca_nhan_9;
+    }
+    return Container(
+        padding: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Text(
+              ngay_ca_nhan_text,
+              style: TextStyle(),
+            ),
+          ],
+        )));
+  }
+}
+
+class TCNNumber extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    if (thang_ca_nhan == '1') {
+      thang_ca_nhan_text = thang_ca_nhan_1;
+    } else if (thang_ca_nhan == '2') {
+      thang_ca_nhan_text = thang_ca_nhan_2;
+    } else if (thang_ca_nhan == '3') {
+      thang_ca_nhan_text = thang_ca_nhan_3;
+    } else if (thang_ca_nhan == '4') {
+      thang_ca_nhan_text = thang_ca_nhan_4;
+    } else if (thang_ca_nhan == '5') {
+      thang_ca_nhan_text = thang_ca_nhan_5;
+    } else if (thang_ca_nhan == '6') {
+      thang_ca_nhan_text = thang_ca_nhan_6;
+    } else if (thang_ca_nhan == '7') {
+      thang_ca_nhan_text = thang_ca_nhan_7;
+    } else if (thang_ca_nhan == '8') {
+      thang_ca_nhan_text = thang_ca_nhan_8;
+    } else if (thang_ca_nhan == '9') {
+      thang_ca_nhan_text = thang_ca_nhan_9;
+    }
+    return Container(
+        padding: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Text(
+              thang_ca_nhan_text,
+              style: TextStyle(),
+            ),
+          ],
+        )));
+  }
+}
+
+class NamCNNumber extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    if (nam_ca_nhan == '1') {
+      nam_ca_nhan_text = nam_ca_nhan_1;
+    } else if (nam_ca_nhan == '2') {
+      nam_ca_nhan_text = nam_ca_nhan_2;
+    } else if (nam_ca_nhan == '3') {
+      nam_ca_nhan_text = nam_ca_nhan_3;
+    } else if (nam_ca_nhan == '4') {
+      nam_ca_nhan_text = nam_ca_nhan_4;
+    } else if (nam_ca_nhan == '5') {
+      nam_ca_nhan_text = nam_ca_nhan_5;
+    } else if (nam_ca_nhan == '6') {
+      nam_ca_nhan_text = nam_ca_nhan_6;
+    } else if (nam_ca_nhan == '7') {
+      nam_ca_nhan_text = nam_ca_nhan_7;
+    } else if (nam_ca_nhan == '8') {
+      nam_ca_nhan_text = nam_ca_nhan_8;
+    } else if (nam_ca_nhan == '9') {
+      nam_ca_nhan_text = nam_ca_nhan_9;
+    } else if (nam_ca_nhan == '11') {
+      nam_ca_nhan_text = nam_ca_nhan_11;
+    } else if (nam_ca_nhan == '22') {
+      nam_ca_nhan_text = nam_ca_nhan_22;
+    }
+    return Container(
+        padding: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Text(
+              nam_ca_nhan_text,
               style: TextStyle(),
             ),
           ],

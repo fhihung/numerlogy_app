@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import './main.dart';
-import 'widgets/buttoncustom.dart';
-import 'numbers/eachnumber.dart';
+import '../main.dart';
+import './buttoncustom.dart';
+import '../numbers/eachnumber.dart';
 
-class SecondRoute extends StatefulWidget {
+class SoPhu extends StatefulWidget {
   @override
-  SecondRouteState createState() => new SecondRouteState();
+  SoPhuState createState() => new SoPhuState();
 }
 
-class SecondRouteState extends State<SecondRoute> {
+class SoPhuState extends State<SoPhu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +58,10 @@ class SecondRouteState extends State<SecondRoute> {
                 Expanded(
                   child: SizedBox(
                     child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).popAndPushNamed("/sophu");
-                      },
-                      child: Text('Các số phụ'),
-                    ),
+                        onPressed: () {
+                          Navigator.of(context).popAndPushNamed("/sophu");
+                        },
+                        child: Text('Các số phụ')),
                   ),
                 ),
               ],
@@ -72,41 +71,20 @@ class SecondRouteState extends State<SecondRoute> {
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom('Con số đường đời', duong_doi,
-                        'Con đường bạn sẽ trải qua', () {
-                      Navigator.of(context).popAndPushNamed("/duongdoi");
+                    child: ButtonCustom('Ngày cá nhân', ngay_ca_nhan, '', () {
+                      Navigator.of(context).popAndPushNamed("/ngay_ca_nhan");
                     })),
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom(
-                        'Con số vận mệnh', van_menh, 'Mục tiêu cuộc đời bạn',
-                        () {
-                      Navigator.of(context).popAndPushNamed("/vanmenh");
+                    child: ButtonCustom('Tháng cá nhân', thang_ca_nhan, '', () {
+                      Navigator.of(context).popAndPushNamed("/thang_ca_nhan");
                     })),
                 Container(
                     padding:
                         EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom(
-                        'Con số linh hồn', linh_hon, 'Mong muốn bên trong bạn',
-                        () {
-                      Navigator.of(context).popAndPushNamed("/linhhon");
-                    })),
-                Container(
-                  padding:
-                      EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                  child: ButtonCustom("Con số tính cách", tinh_cach,
-                      'Cách bạn thể hiện bên ngoài', () {
-                    Navigator.of(context).popAndPushNamed("/tinhcach");
-                  }),
-                ),
-                Container(
-                    padding:
-                        EdgeInsets.only(right: 16, left: 16, top: 6, bottom: 6),
-                    child: ButtonCustom(
-                        'Con số ngày sinh', ngay_sinh, 'Năng khiếu tự nhiên',
-                        () {
-                      Navigator.of(context).popAndPushNamed("/ngaysinh");
+                    child: ButtonCustom('Năm cá nhân', nam_ca_nhan, '', () {
+                      Navigator.of(context).popAndPushNamed("/nam_ca_nhan");
                     })),
               ],
             ),

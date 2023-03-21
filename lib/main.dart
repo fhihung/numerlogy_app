@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
+import './widgets/sophu.dart';
 
 String duong_doi = "";
 String van_menh = "";
@@ -18,9 +19,13 @@ String name = "";
 String day = "";
 String month = "";
 String year = "";
-String current_day = "3";
-String current_month = "5";
+DateTime now = DateTime.now();
+String current_day = "17";
+String current_month = "3";
 String current_year = "2023";
+// String current_day = DateTime(now.day) as String;
+// String current_month = DateTime(now.month) as String;
+// String current_year = DateTime(now.year) as String;
 
 void main() {
   runApp(MyApp());
@@ -42,11 +47,15 @@ class MyApp extends StatelessWidget {
               title: "Numerology",
             ),
         "/second": (context) => SecondRoute(),
+        "/sophu": (context) => SoPhu(),
         "/duongdoi": (context) => DuongDoiRoute(),
         "/vanmenh": (context) => VanMenhRoute(),
         "/linhhon": (context) => LinhHonRoute(),
         "/tinhcach": (context) => TinhCachRoute(),
         "/ngaysinh": (context) => NgaySinhRoute(),
+        "/ngay_ca_nhan": (context) => NgayCaNhan(),
+        "/thang_ca_nhan": (context) => ThangCaNhan(),
+        "/nam_ca_nhan": (context) => NamCaNhan(),
       },
     );
   }
@@ -213,25 +222,25 @@ class MyHomePageState extends State<MyHomePage> {
                   Container(
                     width: 100,
                     child: TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      controller: yearController,
-                      decoration: InputDecoration(
-                        hintText: 'Năm',
-                        hintStyle: TextStyle(color: Color(0xFFC7B49C)),
-                        // errorText: 'Error Text',
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Color(0xFF6A3807)),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        controller: yearController,
+                        decoration: InputDecoration(
+                          hintText: 'Năm',
+                          hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                          // errorText: 'Error Text',
+                          border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Color(0xFF6A3807)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Color(0xFF6A3807)),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Color(0xFF6A3807)),
-                        ),
-                      ),
-                      onChanged: (value) =>
-                          year = yearController.text as String,
-                    ),
+                        onChanged: (value) async {
+                          year = yearController.text as String;
+                        }),
                   ),
                 ],
               )),
@@ -251,78 +260,7 @@ class MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.only(top: 40),
             child: ElevatedButton(
               onPressed: () async {
-                Navigator.of(context).popAndPushNamed("/second");
-                // showDialog(
-                //   context: context,
-                //   builder: (context) {
-                //     return AlertDialog(
-                //       content: Text('Done'),
-                //     );
-                //   },
-                // );
-
-                // _savingData();
-
-                // final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
-                // // final url = 'http://127.0.0.1:5000/example';
-                // final response = await http.post(
-                //   Uri.parse(url),
-                //   body: json.encode({
-                //     'name': name,
-                //     'day': day,
-                //     'month': month,
-                //     'year': year,
-                //     // 'current_day': current_day,
-                //     // 'current_month': current_month,
-                //     // 'current_year': current_year
-                //   }),
-                //   headers: {"Content-Type": "application/json"},
-                // );
-                // final response1 = await http.get(Uri.parse(url));
-                // final decoded =
-                //     json.decode(response1.body) as Map<String, dynamic>;
-                // setState(() {
-                //   duong_doi = decoded['duong_doi'];
-                //   van_menh = decoded['van_menh'];
-                //   linh_hon = decoded['linh_hon'];
-                //   tinh_cach = decoded['tinh_cach'];
-                //   ngay_sinh = decoded['ngay_sinh'];
-                //   // ngay_ca_nhan = decoded['ngay_ca_nhan'];
-                //   // thang_ca_nhan = decoded['thang_ca_nhan'];
-                //   // nam_ca_nhan = decoded['nam_ca_nhan'];
-                // });
-                _savingData();
-                final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
-                // final url = 'http://127.0.0.1:5000/example';
-                dynamic response = await http.post(
-                  Uri.parse(url),
-                  headers: {"Content-Type": "application/json"},
-                  body: json.encode({
-                    'name': name,
-                    'day': day,
-                    'month': month,
-                    'year': year,
-                    'current_day': current_day,
-                    'current_month': current_month,
-                    'current_year': current_year
-                  }),
-                );
-                //  final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
-                // final url = 'http://127.0.0.1:5000/example';
-
-                response = await http.get(Uri.parse(url));
-                final decoded =
-                    json.decode(response.body) as Map<String, dynamic>;
-                setState(() {
-                  van_menh = decoded['van_menh'];
-                  linh_hon = decoded['linh_hon'];
-                  tinh_cach = decoded['tinh_cach'];
-                  duong_doi = decoded['duong_doi'];
-                  ngay_sinh = decoded['ngay_sinh'];
-                  ngay_ca_nhan = decoded['ngay_ca_nhan'];
-                  thang_ca_nhan = decoded['thang_ca_nhan'];
-                  nam_ca_nhan = decoded['nam_ca_nhan'];
-                });
+                await Navigator.of(context).popAndPushNamed("/second");
               },
               child: Text(
                 'Tiếp tục',
@@ -340,7 +278,7 @@ class MyHomePageState extends State<MyHomePage> {
               child: Text('post'),
               onPressed: () async {
                 _savingData();
-                final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
                 // final url = 'http://127.0.0.1:5000/example';
                 final response = await http.post(
                   Uri.parse(url),
@@ -362,7 +300,7 @@ class MyHomePageState extends State<MyHomePage> {
             child: ElevatedButton(
               child: Text('get'),
               onPressed: () async {
-                final url = 'https://a4b9-118-70-209-177.ap.ngrok.io/example';
+                final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
                 // final url = 'http://127.0.0.1:5000/example';
 
                 final response = await http.get(Uri.parse(url));

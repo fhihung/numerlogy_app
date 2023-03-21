@@ -234,3 +234,141 @@ class nsNumbers extends StatelessWidget {
         ));
   }
 }
+
+class ncnNumbers extends StatelessWidget {
+  final String mainNumber;
+  final String titleNumber;
+
+  ncnNumbers(this.mainNumber, this.titleNumber);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Color(0xFFFEFCF3),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Navigator.of(context).popAndPushNamed("/sophu");
+              // handle the press
+            },
+          ),
+          backgroundColor: Color(0xFFFEFCF3),
+          centerTitle: true,
+          title: Text(
+            mainNumber,
+            style: TextStyle(
+                fontFamily: 'Inter', fontSize: 26, color: Color(0xFF6A3807)),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  titleNumber,
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 60,
+                      color: Color(0xFF6A3807)),
+                ),
+              ),
+              NCNNumber()
+            ],
+          ),
+        ));
+  }
+}
+
+class namcnNumbers extends StatelessWidget {
+  final String mainNumber;
+  final String titleNumber;
+
+  namcnNumbers(this.mainNumber, this.titleNumber);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Color(0xFFFEFCF3),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Navigator.of(context).popAndPushNamed("/sophu");
+              // handle the press
+            },
+          ),
+          backgroundColor: Color(0xFFFEFCF3),
+          centerTitle: true,
+          title: Text(
+            mainNumber,
+            style: TextStyle(
+                fontFamily: 'Inter', fontSize: 26, color: Color(0xFF6A3807)),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  titleNumber,
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 60,
+                      color: Color(0xFF6A3807)),
+                ),
+              ),
+              NamCNNumber()
+            ],
+          ),
+        ));
+  }
+}
+
+class tcnNumbers extends StatelessWidget {
+  final String mainNumber;
+  final String titleNumber;
+
+  tcnNumbers(this.mainNumber, this.titleNumber);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Color(0xFFFEFCF3),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Navigator.of(context).popAndPushNamed("/sophu");
+              // handle the press
+            },
+          ),
+          backgroundColor: Color(0xFFFEFCF3),
+          centerTitle: true,
+          title: Text(
+            mainNumber,
+            style: TextStyle(
+                fontFamily: 'Inter', fontSize: 26, color: Color(0xFF6A3807)),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  titleNumber,
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 60,
+                      color: Color(0xFF6A3807)),
+                ),
+              ),
+              TCNNumber()
+            ],
+          ),
+        ));
+  }
+}

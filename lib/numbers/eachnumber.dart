@@ -47,3 +47,24 @@ class NgaySinhRoute extends StatelessWidget {
     return nsNumbers('Con số ngày sinh', ngay_sinh);
   }
 }
+
+class NgayCaNhan extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ncnNumbers('Ngày cá nhân', ngay_ca_nhan);
+  }
+}
+
+class ThangCaNhan extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return tcnNumbers('Tháng cá nhân', thang_ca_nhan);
+  }
+}
+
+class NamCaNhan extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return namcnNumbers('Năm cá  nhân', nam_ca_nhan);
+  }
+}
