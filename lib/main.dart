@@ -20,12 +20,12 @@ String day = "";
 String month = "";
 String year = "";
 DateTime now = DateTime.now();
-String current_day = "17";
-String current_month = "3";
-String current_year = "2023";
-// String current_day = DateTime(now.day) as String;
-// String current_month = DateTime(now.month) as String;
-// String current_year = DateTime(now.year) as String;
+// String current_day = "17";
+// String current_month = "3";
+// String current_year = "2023";
+final String current_day = DateFormat.d().format(now);
+final String current_month = DateFormat.M().format(now);
+final String current_year = DateFormat.y().format(now);
 
 void main() {
   runApp(MyApp());
@@ -101,132 +101,69 @@ class MyHomePageState extends State<MyHomePage> {
             color: Color(0xFF6A3807), fontSize: 28, fontFamily: 'Inter'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
-            margin: EdgeInsets.all(0),
-            child: Text(
-              "Nhập tên của bạn",
-              style: TextStyle(
-                fontSize: 18,
-                color: Color(0xFF6A3807),
-              ),
-            ),
-            alignment: Alignment.bottomLeft,
-          ),
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-              child: Form(
-                key: _formkey,
-                child: TextFormField(
-                  onSaved: (value) {
-                    name = value as String;
-                  },
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: 'Họ và tên',
-                    hintStyle: TextStyle(color: Color(0xFFC7B49C)),
-                    // errorText: 'Error Text',
-                    border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 2, color: Color(0xFF6A3807)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 2, color: Color(0xFF6A3807)),
-                    ),
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
+              margin: EdgeInsets.all(0),
+              child: Text(
+                "Nhập tên của bạn",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xFF6A3807),
                 ),
-              )),
-          Container(
-            padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
-            margin: EdgeInsets.all(0),
-            child: Text(
-              "Nhập ngày sinh",
-              style: TextStyle(
-                fontSize: 18,
-                color: Color(0xFF6A3807),
               ),
+              alignment: Alignment.bottomLeft,
             ),
-            alignment: Alignment.bottomLeft,
-          ),
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 100,
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      controller: dayController,
-                      decoration: InputDecoration(
-                        hintText: 'Ngày',
-                        hintStyle: TextStyle(color: Color(0xFFC7B49C)),
-                        // errorText: 'Error Text',
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Color(0xFF6A3807)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Color(0xFF6A3807)),
-                        ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                child: Form(
+                  key: _formkey,
+                  child: TextFormField(
+                    onSaved: (value) {
+                      name = value as String;
+                    },
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      hintText: 'Họ và tên',
+                      hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                      // errorText: 'Error Text',
+                      border: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(width: 2, color: Color(0xFF6A3807)),
                       ),
-                      onChanged: (value) => day = dayController.text as String,
-                      // readOnly: false,
-                      // onTap: () async {
-                      //   // DateTime? pickedDate = await showDatePicker(
-                      //   //     context: context,
-                      //   //     initialDate: DateTime.now(),
-                      //   //     firstDate: DateTime(2000),
-                      //   //     lastDate: DateTime(2200));
-                      //   // if (pickedDate != null) {
-                      //   //   print(pickedDate);
-                      //   //   String formattedDate =
-                      //   //       DateFormat('dd/MM/yyyy').format(pickedDate);
-                      //   //   print(formattedDate);
-                      //   //   String date_post = formattedDate;
-                      //   //   setState(() {
-                      //   //     dateController.text = formattedDate;
-                      //   //   });
-                      //   // }
-                      // },
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(width: 2, color: Color(0xFF6A3807)),
+                      ),
                     ),
                   ),
-                  Container(
-                    width: 100,
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      controller: monthController,
-                      decoration: InputDecoration(
-                        hintText: 'Tháng',
-                        hintStyle: TextStyle(color: Color(0xFFC7B49C)),
-                        // errorText: 'Error Text',
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Color(0xFF6A3807)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Color(0xFF6A3807)),
-                        ),
-                      ),
-                      onChanged: (value) =>
-                          month = monthController.text as String,
-                    ),
-                  ),
-                  Container(
-                    width: 100,
-                    child: TextField(
+                )),
+            Container(
+              padding: EdgeInsets.only(left: 25, top: 5, bottom: 0, right: 5),
+              margin: EdgeInsets.all(0),
+              child: Text(
+                "Nhập ngày sinh",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xFF6A3807),
+                ),
+              ),
+              alignment: Alignment.bottomLeft,
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: TextField(
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
-                        controller: yearController,
+                        controller: dayController,
                         decoration: InputDecoration(
-                          hintText: 'Năm',
+                          hintText: 'Ngày',
                           hintStyle: TextStyle(color: Color(0xFFC7B49C)),
                           // errorText: 'Error Text',
                           border: OutlineInputBorder(
@@ -238,102 +175,142 @@ class MyHomePageState extends State<MyHomePage> {
                                 BorderSide(width: 2, color: Color(0xFF6A3807)),
                           ),
                         ),
-                        onChanged: (value) async {
-                          year = yearController.text as String;
-                          _savingData();
-                          final url =
-                              'https://6e20-118-70-209-177.ap.ngrok.io/example';
-                          // final url = 'http://127.0.0.1:5000/example';
-                          final response = await http.post(
-                            Uri.parse(url),
-                            headers: {"Content-Type": "application/json"},
-                            body: json.encode({
-                              'name': name,
-                              'day': day,
-                              'month': month,
-                              'year': year,
-                              'current_day': current_day,
-                              'current_month': current_month,
-                              'current_year': current_year
-                            }),
-                          );
-                          ;
-                        }),
-                  ),
-                ],
-              )),
-          Container(
-            padding: EdgeInsets.only(left: 15, top: 5, bottom: 0, right: 5),
-            margin: EdgeInsets.all(0),
-            child: Text(
-              "Họ tên và ngày tháng năm sinh sẽ cho bạn biết con đường mà bạn sẽ bước đi trong cuộc đời và những tài năng mà bạn được trao tặng.",
-              style: TextStyle(
-                fontSize: 13,
-                color: Color(0xFF6A3807),
-              ),
-            ),
-            alignment: Alignment.bottomLeft,
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 40),
-            child: ElevatedButton(
-              onPressed: () async {
-                await Navigator.of(context).popAndPushNamed("/second");
-              },
+                        onChanged: (value) =>
+                            day = dayController.text as String,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        controller: monthController,
+                        decoration: InputDecoration(
+                          hintText: 'Tháng',
+                          hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                          // errorText: 'Error Text',
+                          border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Color(0xFF6A3807)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Color(0xFF6A3807)),
+                          ),
+                        ),
+                        onChanged: (value) =>
+                            month = monthController.text as String,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      // margin: EdgeInsets.only(right: 10),
+                      child: Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          controller: yearController,
+                          decoration: InputDecoration(
+                            hintText: 'Năm',
+                            hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                            // errorText: 'Error Text',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 2, color: Color(0xFF6A3807)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 2, color: Color(0xFF6A3807)),
+                            ),
+                          ),
+                          onChanged: (value) async {
+                            year = yearController.text as String;
+                            ;
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+            Container(
+              padding: EdgeInsets.only(left: 15, top: 5, bottom: 0, right: 5),
+              margin: EdgeInsets.all(0),
               child: Text(
-                'Tiếp tục',
-                style: TextStyle(fontSize: 22),
+                "Họ tên và ngày tháng năm sinh sẽ cho bạn biết con đường mà bạn sẽ bước đi trong cuộc đời và những tài năng mà bạn được trao tặng.",
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Color(0xFF6A3807),
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFEA9E43),
-                  onPrimary: Color(0xFFFEFCF3),
-                  minimumSize: Size(360, 60)),
+              alignment: Alignment.bottomLeft,
             ),
-            alignment: Alignment.bottomCenter,
-          ),
+            Container(
+              padding: EdgeInsets.only(top: 40),
+              child: ElevatedButton(
+                onPressed: () async {
+                  _savingData();
+                  final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
+                  // final url = 'http://127.0.0.1:5000/example';
+                  final response = await http.post(
+                    Uri.parse(url),
+                    headers: {"Content-Type": "application/json"},
+                    body: json.encode({
+                      'name': name,
+                      'day': day,
+                      'month': month,
+                      'year': year,
+                      'current_day': current_day,
+                      'current_month': current_month,
+                      'current_year': current_year
+                    }),
+                  );
+                  // final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
+                  // final url = 'http://127.0.0.1:5000/example';
 
-          Container(
-            child: ElevatedButton(
-              child: Text('get'),
-              onPressed: () async {
-                final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
-                // final url = 'http://127.0.0.1:5000/example';
-
-                final response = await http.get(Uri.parse(url));
-                final decoded =
-                    json.decode(response.body) as Map<String, dynamic>;
-                setState(() {
-                  van_menh = decoded['van_menh'];
-                  linh_hon = decoded['linh_hon'];
-                  tinh_cach = decoded['tinh_cach'];
-                  duong_doi = decoded['duong_doi'];
-                  ngay_sinh = decoded['ngay_sinh'];
-                  ngay_ca_nhan = decoded['ngay_ca_nhan'];
-                  thang_ca_nhan = decoded['thang_ca_nhan'];
-                  nam_ca_nhan = decoded['nam_ca_nhan'];
-                });
-              },
+                  final response1 = await http.get(Uri.parse(url));
+                  final decoded =
+                      json.decode(response1.body) as Map<String, dynamic>;
+                  setState(() {
+                    van_menh = decoded['van_menh'];
+                    linh_hon = decoded['linh_hon'];
+                    tinh_cach = decoded['tinh_cach'];
+                    duong_doi = decoded['duong_doi'];
+                    ngay_sinh = decoded['ngay_sinh'];
+                    ngay_ca_nhan = decoded['ngay_ca_nhan'];
+                    thang_ca_nhan = decoded['thang_ca_nhan'];
+                    nam_ca_nhan = decoded['nam_ca_nhan'];
+                  });
+                  await Future.delayed(const Duration(milliseconds: 100), () {
+                    Navigator.of(context).popAndPushNamed("/second");
+                  });
+                  await Navigator.of(context).popAndPushNamed("/second");
+                },
+                child: Text(
+                  'Tiếp tục',
+                  style: TextStyle(fontSize: 22),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Color(0xFFEA9E43),
+                    onPrimary: Color(0xFFFEFCF3),
+                    minimumSize: Size(360, 60)),
+              ),
+              alignment: Alignment.bottomCenter,
             ),
-          ),
-          // Container(
-          //   alignment: Alignment.center,
-          //   child: Text(
-          //     van_menh,
-          //     style: TextStyle(
-          //         fontSize: 24,
-          //         backgroundColor: Color.fromARGB(255, 255, 255, 255)),
-          //   ),
-          // ),
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              linh_hon,
-              style: TextStyle(
-                  fontSize: 24,
-                  backgroundColor: Color.fromARGB(255, 255, 255, 255)),
-            ),
-          )
-        ],
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                current_month,
+                style: TextStyle(
+                    fontSize: 24,
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
