@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './main.dart';
+import '../main.dart';
 // import './secondroute.dart';
 // import './thirdroute.dart';
 // import 'numbers/eachnumber.dart';
-import 'models/text.dart';
+import '../models/text.dart';
 
 String duong_doi_text = "";
 String van_menh_text = "";

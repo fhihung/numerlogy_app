@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'numbers/eachnumber.dart';
-import './secondroute.dart';
+import 'widgets/secondroute.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:flutter/cupertino.dart';
 import './widgets/sophu.dart';
+import './theme/text_theme.dart';
+import './theme/theme.dart';
+import './utils/colors.dart';
 
 String duong_doi = "";
 String van_menh = "";
@@ -20,9 +22,7 @@ String day = "";
 String month = "";
 String year = "";
 DateTime now = DateTime.now();
-// String current_day = "17";
-// String current_month = "3";
-// String current_year = "2023";
+
 final String current_day = DateFormat.d().format(now);
 final String current_month = DateFormat.M().format(now);
 final String current_year = DateFormat.y().format(now);
@@ -38,7 +38,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+        backgroundColor: Color(0xFFFEFCF3),
+        brightness: Brightness.light,
+        useMaterial3: true,
+        textTheme: TextTheme(
+          headline1: TextStyle(
+              color: Color(0xFF6A3807), fontSize: 28, fontFamily: 'Inter'),
+          headline2: TextStyle(fontSize: 18, color: Color(0xFF6A3807)),
+          headline3: TextStyle(color: Color(0xFFC7B49C), fontSize: 16),
+          headline4: TextStyle(fontSize: 13, color: Color(0xFF6A3807)),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFEA9E43),
+                onPrimary: Color(0xFFFEFCF3),
+                minimumSize: Size(360, 60))),
+      ),
+      darkTheme: ThemeData(
+        backgroundColor: Colors.black,
+        brightness: Brightness.dark,
+        textTheme: TextTheme(
+          headline1: TextStyle(
+              color: DarkColors.mainDarkColor,
+              fontSize: 28,
+              fontFamily: 'Inter'),
+          headline2: TextStyle(fontSize: 18, color: DarkColors.mainDarkColor),
+          headline3: TextStyle(
+              color: Color.fromARGB(255, 177, 236, 215), fontSize: 16),
+          headline4: TextStyle(fontSize: 13, color: DarkColors.mainDarkColor),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                primary: Color.fromARGB(255, 13, 213, 150),
+                onPrimary: Color(0xFFFEFCF3),
+                minimumSize: Size(360, 60))),
+      ),
+      themeMode: ThemeMode.system,
       title: 'Flutter App',
       // home: MyHomePage(title: 'Numerology'),
       initialRoute: "/",
@@ -87,18 +123,14 @@ class MyHomePageState extends State<MyHomePage> {
   final dayController = TextEditingController();
   final monthController = TextEditingController();
   final yearController = TextEditingController();
-  // String current_day = DateTime.now().day as String;
-  // String current_month = DateTime.now().month as String;
-  // String current_year = DateTime.now().year as String;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFEFCF3),
       appBar: AppBar(
         title: Text('Tạo hồ sơ'),
-        backgroundColor: Color(0xFFFEFCF3),
-        titleTextStyle: TextStyle(
-            color: Color(0xFF6A3807), fontSize: 28, fontFamily: 'Inter'),
+        // backgroundColor: Color(0xFFFEFCF3),
+        titleTextStyle: Theme.of(context).textTheme.headline1,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -109,10 +141,7 @@ class MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.all(0),
               child: Text(
                 "Nhập tên của bạn",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Color(0xFF6A3807),
-                ),
+                style: Theme.of(context).textTheme.headline2,
               ),
               alignment: Alignment.bottomLeft,
             ),
@@ -127,7 +156,7 @@ class MyHomePageState extends State<MyHomePage> {
                     controller: nameController,
                     decoration: InputDecoration(
                       hintText: 'Họ và tên',
-                      hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                      hintStyle: Theme.of(context).textTheme.headline3,
                       // errorText: 'Error Text',
                       border: OutlineInputBorder(
                         borderSide:
@@ -145,10 +174,7 @@ class MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.all(0),
               child: Text(
                 "Nhập ngày sinh",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Color(0xFF6A3807),
-                ),
+                style: Theme.of(context).textTheme.headline2,
               ),
               alignment: Alignment.bottomLeft,
             ),
@@ -164,7 +190,7 @@ class MyHomePageState extends State<MyHomePage> {
                         controller: dayController,
                         decoration: InputDecoration(
                           hintText: 'Ngày',
-                          hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                          hintStyle: Theme.of(context).textTheme.headline3,
                           // errorText: 'Error Text',
                           border: OutlineInputBorder(
                             borderSide:
@@ -189,7 +215,7 @@ class MyHomePageState extends State<MyHomePage> {
                         controller: monthController,
                         decoration: InputDecoration(
                           hintText: 'Tháng',
-                          hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                          hintStyle: Theme.of(context).textTheme.headline3,
                           // errorText: 'Error Text',
                           border: OutlineInputBorder(
                             borderSide:
@@ -216,7 +242,7 @@ class MyHomePageState extends State<MyHomePage> {
                           controller: yearController,
                           decoration: InputDecoration(
                             hintText: 'Năm',
-                            hintStyle: TextStyle(color: Color(0xFFC7B49C)),
+                            hintStyle: Theme.of(context).textTheme.headline3,
                             // errorText: 'Error Text',
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -241,10 +267,7 @@ class MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.all(0),
               child: Text(
                 "Họ tên và ngày tháng năm sinh sẽ cho bạn biết con đường mà bạn sẽ bước đi trong cuộc đời và những tài năng mà bạn được trao tặng.",
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Color(0xFF6A3807),
-                ),
+                style: Theme.of(context).textTheme.headline4,
               ),
               alignment: Alignment.bottomLeft,
             ),
@@ -253,7 +276,7 @@ class MyHomePageState extends State<MyHomePage> {
               child: ElevatedButton(
                 onPressed: () async {
                   _savingData();
-                  final url = 'https://6e20-118-70-209-177.ap.ngrok.io/example';
+                  final url = 'https://f833-118-70-209-177.ap.ngrok.io/example';
                   // final url = 'http://127.0.0.1:5000/example';
                   final response = await http.post(
                     Uri.parse(url),
@@ -293,22 +316,18 @@ class MyHomePageState extends State<MyHomePage> {
                   'Tiếp tục',
                   style: TextStyle(fontSize: 22),
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFEA9E43),
-                    onPrimary: Color(0xFFFEFCF3),
-                    minimumSize: Size(360, 60)),
               ),
               alignment: Alignment.bottomCenter,
             ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                current_month,
-                style: TextStyle(
-                    fontSize: 24,
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255)),
-              ),
-            )
+            // Container(
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     current_month,
+            //     style: TextStyle(
+            //         fontSize: 24,
+            //         backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+            //   ),
+            // )
           ],
         ),
       ),

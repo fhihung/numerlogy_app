@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './main.dart';
-import 'widgets/buttoncustom.dart';
-import 'numbers/eachnumber.dart';
+import '../main.dart';
+import 'buttoncustom.dart';
+import '../numbers/eachnumber.dart';
 
 class SecondRoute extends StatefulWidget {
   @override

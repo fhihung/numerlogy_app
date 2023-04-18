@@ -39,6 +39,7 @@ dependencies:
   http: ^0.13.5
   pull_down_button: ^0.6.2
   intl: ^0.18.0
+  google_fonts: ^4.0.3
   # flutter_launcher_icons: "^0.12.0"
 
 

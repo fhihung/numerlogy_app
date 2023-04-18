@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:numerology_app/thirdroute.dart';
-import '../secondroute.dart';
-// import 'package:http/http.dart' as http;
+import 'package:numerology_app/widgets/thirdroute.dart';
+import '../widgets/secondroute.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
-// import 'detailtext.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 import 'package:numerology_app/main.dart';
-import 'detailnumber.dart';
 import 'package:numerology_app/main.dart';
-import '../textnumber.dart';
+import '../widgets/textnumber.dart';
 import 'numbers.dart';
 
 // DetailNumber('Con số đường đời', duong_doi);
